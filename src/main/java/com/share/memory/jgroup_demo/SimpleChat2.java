@@ -1,5 +1,6 @@
 package com.share.memory.jgroup_demo;
 
+import com.share.memory.jgroup_demo.utils.Utils;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
 import org.jgroups.ReceiverAdapter;
@@ -23,7 +24,7 @@ public class SimpleChat2 extends ReceiverAdapter {
     }
 
     private void start() throws Exception {
-        channel=new JChannel("tcp_2.xml").setReceiver(this);
+        channel=new JChannel(Utils.setLocalIp("tcp_1.xml")).setReceiver(this);
         channel.connect("ChatCluster");
         eventLoop();
         channel.close();
